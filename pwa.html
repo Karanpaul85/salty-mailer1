@@ -19,7 +19,14 @@
           // then your button still hidden ;)
 
           // show button with display:block;
-          install_button.style.display = "block";
+          // install_button.style.display = "block";
+          // if(install_button.css('style='))
+          install_button.classList.add("show");
+          // if (install_button.classList.contains("show")) {
+          //   setTimeout(function () {
+          //     install_button.classList.add("animate");
+          //   }, 1000);
+          // }
 
           // prevent default event
           e.preventDefault();
@@ -62,10 +69,66 @@
     <style>
       #install {
         display: none;
+        position: fixed;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        transition: all ease-in-out 0.3s;
+        padding: 8px;
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+        gap: 8px;
+      }
+      #install img {
+        width: 55px;
+      }
+      #install .content {
+        width: calc(100% - 100px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      #install .content p {
+        margin: 0;
+      }
+      #install .content button {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        text-transform: uppercase;
+        padding: 8px 16px;
+        background: none;
+      }
+      #install.show {
+        display: flex;
+        animation-name: example;
+        animation-duration: 1s;
+        animation-delay: 1s;
+        animation-fill-mode: forwards; /* Ensures the final state persists */
+      }
+      /* #install.show.animate {
+        animation-name: example;
+        animation-duration: 1s;
+        animation-delay: 2s;
+        animation-fill-mode: forwards; 
+      } */
+
+      /* The animation code */
+      @keyframes example {
+        from {
+          bottom: -100px; /* Initial position (adjust as needed) */
+        }
+        to {
+          bottom: 0; /* Final position */
+        }
       }
     </style>
   </head>
   <body>
-    <button id="install">Install</button>
+    <div id="install">
+      <img src="./icon512_rounded.png" alt="test app" />
+      <div class="content">
+        <p>Add on your home screen</p>
+        <button>Install</button>
+      </div>
+    </div>
   </body>
 </html>
