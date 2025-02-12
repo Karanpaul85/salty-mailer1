@@ -9,6 +9,7 @@
       document.addEventListener("DOMContentLoaded", function () {
         // variable store event
         window.deferredPrompt = {};
+        window.isAppInstalled = false;
 
         // get button with id
         const install_button = document.querySelector("#install");
@@ -30,7 +31,7 @@
 
           // prevent default event
           e.preventDefault();
-
+          window.isAppInstalled = e ? false : true;
           // store install avaliable event
           window.deferredPrompt = e;
 
@@ -58,6 +59,7 @@
         ) {
           // hidden the button
           install_button.style.display = "none";
+          window.isAppInstalled = true;
         }
 
         // do action when finished install
@@ -123,6 +125,12 @@
     </style>
   </head>
   <body>
+    <a
+      href=""
+      onclick="this.href='/?promo=' + (window.isAppInstalled ? 'pwa' : 'web');"
+      >Click here</a
+    >
+
     <div id="install">
       <img src="./icon512_rounded.png" alt="test app" />
       <div class="content">
